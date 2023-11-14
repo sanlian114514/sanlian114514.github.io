@@ -1,0 +1,143 @@
+<!doctype html>
+<meta http-equiv="Content-Security-Policy" content="
+	img-src 'self' * 'unsafe-inline' data:; 
+	media-src 'self' * 'unsafe-inline' data:; 
+	script-src 'self' * 'unsafe-inline' data:">
+<link rel="author" href="http://grompe.org.ru/">
+<link rel="stylesheet" href="drawit.css?3">
+<link rel="shortcut icon" href="favicon.ico">
+<title>及时绘画！</title>
+<body id="newcanvasyo" class="sandbox">
+  <div id="myheader">
+    <button id="openmenu" title="打开菜单"></button>
+    及时绘画！（最后更新：2018年7月16日）
+  </div>
+  <ul id="menu">
+    <li id="simplay">在十分钟内画出一个随机短语！</li>
+    <hr>
+    <li id="custompng">另存为自定义大小的 PNG...</li>
+    <hr>
+    <li id="transparentbg">实验性：使背景透明</li>
+    <li id="enablepatterns">实验性：启用模式</li>
+    <li id="exportwebm">实验性：导出 WebM（仅限 Chrome）</li>
+    <li id="setbackgroundimage">实验性：设置背景图像</li>
+    <hr>
+    <li id="drawtransitions">显示颜色过渡</li>
+    <li id="togglesmooth">禁用描边平滑</li>
+    <li id="setsnap">对齐网格</li>
+    <hr>
+    <li id="usagetips">使用提示</li>
+  </ul>
+  <noscript>
+    <div id="noscriptwarn">
+      别忘了开启javascript，这个网站需要它！
+    </div>
+  </noscript>
+  <div id="drawthis" class="onlyplay">一只牛跳到了月亮上</div>
+  <div id="emptytitle" class="onlysandbox"></div>
+  <div id="bl" class="noselect">
+    <div id="toolpane">
+      <div id="timer" class="panel">00:00</div>
+      <div id="colors" class="panel">
+        <div id="palettename">正常</div>
+        <div id="palettechooser" class="onlysandbox"></div>
+        <div id="palette">
+          <b
+          style="background-color:#000000"></b><b
+          style="background-color:#444444"></b><b
+          style="background-color:#999999"></b><b
+          style="background-color:#ffffff"></b><b
+          style="background-color:#603913"></b><b
+          style="background-color:#c69c6d"></b><b
+          style="background-color:#ffdab9"></b><b
+          style="background-color:#ff0000"></b><b
+          style="background-color:#ffd700"></b><b
+          style="background-color:#ff6600"></b><b
+          style="background-color:#16ff00"></b><b
+          style="background-color:#0fad00"></b><b
+          style="background-color:#00ffff"></b><b
+          style="background-color:#0247fe"></b><b
+          style="background-color:#ec008c"></b><b
+          style="background-color:#8601af"></b><b
+          style="background-color:#fffdc9"></b><b
+          id="eraser"></b>
+        </div>
+        <div id="indicator">
+          <div
+          id="addcolor" title="添加新颜色（默认为基色）">+</div><div
+          id="delcolor" title="删除最后一种匹配的辅助颜色（或最后一种颜色）">-</div><div
+          id="primary" title="颜色1（左键或笔）" style="background-color:#000">L</div><div
+          id="secondary" title="颜色2（右键或橡皮擦）" class="eraser">R</div>
+        </div>
+      </div>
+      <div id="tools" class="panel">
+        <button id="brush0" title="超小刷子（-）"></button>
+        <button id="brush1" title="小刷子"></button>
+        <button id="brush2" class="sel" title="中刷子"></button>
+        <button id="brush3" title="大刷子（=）"></button>
+        <hr>
+        <button id="setbackground" title="设置背景（B）"></button>
+        <button id="undo" title="撤消（Ctrl+Z）"></button>
+        <button id="redo" title="重做（Ctrl+Y）"></button>
+        <button id="trash" title="清除画布（填充：Shift+F）"></button>
+      </div>
+    </div>
+    <div id="popup"><div id="popupclose"></div>
+      <div id="popuptitle"></div>
+      <div id="popupcontents"></div>
+    </div>
+    <div id="svgContainer"></div>
+    <div id="seekbar"><div id="play" title="播放（空格）"></div><div id="knob"></div></div>
+    <div id="infopane">
+      <div id="gamemode" class="panel">
+        <span class="onlysandbox">沙盒</span>
+        <span class="onlyplay">公共安全工作游戏</span>
+      </div>
+      <div id="gamebuttons" class="panel">
+      <!--
+        <button id="bookmark" class="onlyplay">书签</button>
+        <button id="options" class="onlyplay">选项</button>
+        <button id="skip" class="onlyplay">跳过</button>
+        <button id="report" class="onlyplay">报告</button>
+        <button id="exit" class="onlyplay">退出</button>
+      -->
+        <button id="skip" class="onlyplay">跳过</button>
+        <button id="exit" class="onlyplay">返回到沙盒</button>
+        <button id="import" class="onlysandbox">导入画作</button>
+        <button id="export" class="onlysandbox">导出画作</button>
+        <button id="imgur" class="onlysandbox">上传到imgur</button>
+        <button id="sharepalette" class="onlysandbox">分享自定义调色板</button>
+      </div>
+      <button id="submit" class="onlyplay">提交！</button>
+      <div class="guidelines onlyplay">指南
+        <ul>
+          <li>欢迎来到简单绘画！尽你最大的努力</li>
+          <li>如果短语太难，请使用跳过按钮</li>
+          <li>不要画文本-始终画图片</li>
+          <li>显式绘图（NSFW）将被禁止</li>
+        </ul>
+      </div>
+      <div class="guidelines onlysandbox">沙盒
+        <ul>
+          <li>欢迎来到沙盒！在这里，您可以使用所有选项板和绘图工具。</li>
+          <li>保存的PNG格式图片将包含你的绘画过程。</li>
+          <li>加载图形后，可以继续绘画或观看其绘画过程。</li>
+          <li>请注意，编辑图片或用其他程序播放可能会破坏播放数据。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="wacomContainer"></div>
+<script>
+window.options = {
+  enableWacom: "auto",
+  fixTabletPluginGoingAWOL: 1,
+  hideCross: 1,
+  colorNumberShortcuts: 1,
+  colorDoublePress: 0,
+  colorUnderCursorHint: 1,
+};
+</script>
+<script src="pako.min.js"></script>
+<script src="drawit.js?15"></script>
+</body>
