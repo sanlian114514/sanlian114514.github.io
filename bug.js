@@ -1,3 +1,6 @@
+!function (){
+    console.log("彩蛋!")
+}
 function copy(){
     const input = document.createElement('input');
     document.body.appendChild(input);

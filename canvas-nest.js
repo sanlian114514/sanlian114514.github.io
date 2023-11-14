@@ -1,1 +1,171 @@
-!function () { "use strict"; function e(e) { return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e } function t(e, t) { return e(t = { exports: {} }, t.exports), t.exports } var n = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }); var n = 1; t.default = function () { return "" + n++ }, e.exports = t.default }); e(n); var o = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }), t.default = function (e) { var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 30, n = null; return function () { for (var o = this, i = arguments.length, r = Array(i), a = 0; a < i; a++)r[a] = arguments[a]; clearTimeout(n), n = setTimeout(function () { e.apply(o, r) }, t) } }, e.exports = t.default }); e(o); var i = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }); t.SizeSensorId = "size-sensor-id", t.SensorStyle = "display:block;position:absolute;top:0;left:0;height:100%;width:100%;overflow:hidden;pointer-events:none;z-index:-1;opacity:0", t.SensorClassName = "size-sensor-object" }); e(i); i.SizeSensorId, i.SensorStyle, i.SensorClassName; var r = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }), t.createSensor = void 0; var n, r = (n = o) && n.__esModule ? n : { default: n }; t.createSensor = function (e) { var t = void 0, n = [], o = (0, r.default)(function () { n.forEach(function (t) { t(e) }) }), a = function () { t && t.parentNode && (t.contentDocument.defaultView.removeEventListener("resize", o), t.parentNode.removeChild(t), t = void 0, n = []) }; return { element: e, bind: function (r) { t || (t = function () { "static" === getComputedStyle(e).position && (e.style.position = "relative"); var t = document.createElement("object"); return t.onload = function () { t.contentDocument.defaultView.addEventListener("resize", o), o() }, t.setAttribute("style", i.SensorStyle), t.setAttribute("class", i.SensorClassName), t.type = "text/html", e.appendChild(t), t.data = "about:blank", t }()), -1 === n.indexOf(r) && n.push(r) }, destroy: a, unbind: function (e) { var o = n.indexOf(e); -1 !== o && n.splice(o, 1), 0 === n.length && t && a() } } } }); e(r); r.createSensor; var a = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }), t.createSensor = void 0; var n, i = (n = o) && n.__esModule ? n : { default: n }; t.createSensor = function (e) { var t = void 0, n = [], o = (0, i.default)(function () { n.forEach(function (t) { t(e) }) }), r = function () { t.disconnect(), n = [], t = void 0 }; return { element: e, bind: function (i) { t || (t = function () { var t = new ResizeObserver(o); return t.observe(e), o(), t }()), -1 === n.indexOf(i) && n.push(i) }, destroy: r, unbind: function (e) { var o = n.indexOf(e); -1 !== o && n.splice(o, 1), 0 === n.length && t && r() } } } }); e(a); a.createSensor; var s = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }), t.createSensor = void 0; t.createSensor = "undefined" != typeof ResizeObserver ? a.createSensor : r.createSensor }); e(s); s.createSensor; var u = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }), t.removeSensor = t.getSensor = void 0; var o, r = (o = n) && o.__esModule ? o : { default: o }; var a = {}; t.getSensor = function (e) { var t = e.getAttribute(i.SizeSensorId); if (t && a[t]) return a[t]; var n = (0, r.default)(); e.setAttribute(i.SizeSensorId, n); var o = (0, s.createSensor)(e); return a[n] = o, o }, t.removeSensor = function (e) { var t = e.element.getAttribute(i.SizeSensorId); e.element.removeAttribute(i.SizeSensorId), e.destroy(), t && a[t] && delete a[t] } }); e(u); u.removeSensor, u.getSensor; var c = t(function (e, t) { Object.defineProperty(t, "__esModule", { value: !0 }), t.clear = t.bind = void 0; t.bind = function (e, t) { var n = (0, u.getSensor)(e); return n.bind(t), function () { n.unbind(t) } }, t.clear = function (e) { var t = (0, u.getSensor)(e); (0, u.removeSensor)(t) } }); e(c); var l = c.clear, d = c.bind, v = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function (e) { return window.setTimeout(e, 1e3 / 60) }, f = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame || window.oCancelAnimationFrame || window.clearTimeout, m = function (e) { return new Array(e).fill(0).map(function (e, t) { return t }) }, h = Object.assign || function (e) { for (var t = 1; t < arguments.length; t++) { var n = arguments[t]; for (var o in n) Object.prototype.hasOwnProperty.call(n, o) && (e[o] = n[o]) } return e }, p = function () { function e(e, t) { for (var n = 0; n < t.length; n++) { var o = t[n]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o) } } return function (t, n, o) { return n && e(t.prototype, n), o && e(t, o), t } }(); var y = function () { function e(t, n) { var o = this; !function (e, t) { if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function") }(this, e), this.randomPoints = function () { return m(o.c.count).map(function () { return { x: Math.random() * o.canvas.width, y: Math.random() * o.canvas.height, xa: 2 * Math.random() - 1, ya: 2 * Math.random() - 1, max: 6e3 } }) }, this.el = t, this.c = h({ zIndex: -1, opacity: .5, color: "0,0,0", pointColor: "0,0,0", count: 99 }, n), this.canvas = this.newCanvas(), this.context = this.canvas.getContext("2d"), this.points = this.randomPoints(), this.current = { x: null, y: null, max: 2e4 }, this.all = this.points.concat([this.current]), this.bindEvent(), this.requestFrame(this.drawCanvas) } return p(e, [{ key: "bindEvent", value: function () { var e = this; d(this.el, function () { e.canvas.width = e.el.clientWidth, e.canvas.height = e.el.clientHeight }), this.onmousemove = window.onmousemove, window.onmousemove = function (t) { e.current.x = t.clientX - e.el.offsetLeft + document.scrollingElement.scrollLeft, e.current.y = t.clientY - e.el.offsetTop + document.scrollingElement.scrollTop, e.onmousemove && e.onmousemove(t) }, this.onmouseout = window.onmouseout, window.onmouseout = function () { e.current.x = null, e.current.y = null, e.onmouseout && e.onmouseout() } } }, { key: "newCanvas", value: function () { "static" === getComputedStyle(this.el).position && (this.el.style.position = "relative"); var e, t = document.createElement("canvas"); return t.style.cssText = "display:block;position:absolute;top:0;left:0;height:100%;width:100%;overflow:hidden;pointer-events:none;z-index:" + (e = this.c).zIndex + ";opacity:" + e.opacity, t.width = this.el.clientWidth, t.height = this.el.clientHeight, this.el.appendChild(t), t } }, { key: "requestFrame", value: function (e) { var t = this; this.tid = v(function () { return e.call(t) }) } }, { key: "drawCanvas", value: function () { var e = this, t = this.context, n = this.canvas.width, o = this.canvas.height, i = this.current, r = this.points, a = this.all; t.clearRect(0, 0, n, o); var s = void 0, u = void 0, c = void 0, l = void 0, d = void 0, v = void 0; r.forEach(function (r, f) { for (r.x += r.xa, r.y += r.ya, r.xa *= r.x > n || r.x < 0 ? -1 : 1, r.ya *= r.y > o || r.y < 0 ? -1 : 1, t.fillStyle = "rgba(" + e.c.pointColor + ")", t.fillRect(r.x - .5, r.y - .5, 1, 1), u = f + 1; u < a.length; u++)null !== (s = a[u]).x && null !== s.y && (l = r.x - s.x, d = r.y - s.y, (v = l * l + d * d) < s.max && (s === i && v >= s.max / 2 && (r.x -= .03 * l, r.y -= .03 * d), c = (s.max - v) / s.max, t.beginPath(), t.lineWidth = c / 2, t.strokeStyle = "rgba(" + e.c.color + "," + (c + .2) + ")", t.moveTo(r.x, r.y), t.lineTo(s.x, s.y), t.stroke())) }), this.requestFrame(this.drawCanvas) } }, { key: "destroy", value: function () { l(this.el), window.onmousemove = this.onmousemove, window.onmouseout = this.onmouseout, f(this.tid), this.canvas.parentNode.removeChild(this.canvas) } }]), e }(); y.version = "2.0.4"; var w, b; new y(document.body, (w = document.getElementsByTagName("script"), { zIndex: (b = w[w.length - 1]).getAttribute("zIndex"), opacity: b.getAttribute("opacity"), color: b.getAttribute("color"), pointColor: b.getAttribute("pointColor"), count: Number(b.getAttribute("count")) || 99 })) }();
+//地址:https://github.com/jc1144096387/canvas_nest
+//立即执行函数
+//!的作用是告诉javascript引擎这是一个函数表达式，不是函数声明，()、！、+、-等运算符都能实现这个作用，不过()是最安全的
+//在!function(){}后面加上()会立即调用这个函数
+//这样做可以模仿一个私有作用域，这样html文件引用多个js文件时便不会造成变量冲突
+! function () {
+
+    //canvas元素相关
+        //创建canvas元素，并设置canvas元素的id
+        var canvas    = document.createElement("canvas"),
+            context   = canvas.getContext("2d"), 
+            attr      = getAttr();
+    
+        //设置创建的canvas的相关属性
+        canvas.id = "c_n" + attr.length;
+        canvas.style.cssText = "position:fixed;top:0;left:0;z-index:" + attr.z + ";opacity:" + attr.opacity;
+        //将canvas元素添加到body元素中
+        document.getElementsByTagName("body")[0].appendChild(canvas);
+        //该函数设置了canvas元素的width属性和height属性
+        getWindowWH(); 
+        //onresize 事件会在窗口或框架被调整大小时发生
+        //此处即为当窗口大小改变时，重新获取窗口的宽高和设置canvas元素的宽高
+        window.onresize = getWindowWH;
+    
+        
+        //该函数会得到引用了本文件的script元素，
+        //因为本文件中在赋值时执行了一次getScript函数，html文件引用本文件时，本文件之后的script标签还没有被浏览器解释，
+        //所以得到的script数组中，引用了本文的script元素在该数组的末尾
+        //该函数的用意为使开发者能直接修改在html中引入该文件的script元素的属性来修改画布的一些属性，画布的z-index，透明度和小方块数量，颜色
+        //与前面往body元素添加canvas元素的代码配合，当开发者想要使用该特效作为背景时，只需在html文件中添加script元素并引用本文件即可
+        function getAttr() {
+            let scripts = document.getElementsByTagName("script"),
+                len = scripts.length,
+                script = scripts[len - 1];//v为最后一个script元素，即引用了本文件的script元素
+            return {
+                length: len,
+                z: script.getAttribute("zIndex") || -1,
+                opacity: script.getAttribute("opacity") || 0.5,
+                color: script.getAttribute("color") || "0,0,0",
+                count: script.getAttribute("count") || 99
+            }
+        }
+        //获得窗口宽高，并设置canvas元素宽高
+        function getWindowWH() {
+            W = canvas.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth, 
+            H = canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        }
+    
+    
+    
+    
+    
+    //生成随机位置的小方块
+        var random = Math.random,
+            squares = [];//存放小方块
+    
+        //往squares[]数组放小方块
+        for(let p = 0; p < attr.count; p ++){    
+            var square_x = random() * W,//横坐标
+                square_y = random() * H,//纵坐标
+                square_xa = 2 * random() - 1,//x轴位移 -1,1
+                square_ya = 2 * random() - 1;//y轴位移
+            squares.push({
+                x: square_x,
+                y: square_y,
+                xa: square_xa,
+                ya: square_ya,
+                max: 6000
+            })
+        }
+    
+    //生成鼠标小方块
+        var mouse = {
+                x: null,
+                y: null,
+                max: 20000
+            };
+        //获取鼠标所在坐标
+        window.onmousemove = function (i) {
+            //i为W3C DOM，window.event 为 IE DOM，以实现兼容IE
+            //不过目前似乎IE已经支持W3C DOM，我用的是IE11，我注释掉下一句代码也能实现鼠标交互效果，
+            //网上说7/8/9是不支持的，本人没有试验，
+            //当然加上是没有错的
+            i = i || window.event; 
+            mouse.x = i.clientX; 
+            mouse.y = i.clientY;
+        }
+        //鼠标移出窗口后，消除鼠标小方块
+        window.onmouseout = function () {
+            mouse.x = null;
+            mouse.y = null;
+        }
+    
+    
+    //绘制小方块，小方块移动(碰到边界反向移动)，小方块受鼠标束缚
+        var animation = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (i) {
+            window.setTimeout(i, 1000 / 45)
+        };//各个浏览器支持的requestAnimationFrame有所不同，兼容各个浏览器
+    
+        function draw() {
+            //清除画布
+            context.clearRect(0, 0, W, H);
+    
+            var w = [mouse].concat(squares);//连接(合并)鼠标小方块数组和其他小方块数组
+            var x, v, A, B, z, y;
+    
+    
+            //square属性表：x，y，xa，ya，max
+            squares.forEach(function (i) {
+    
+                //实现小方块定向移动
+                i.x += i.xa;
+                i.y += i.ya;
+    
+                // 控制小方块移动方向
+                // 当小方块达到窗口边界时，反向移动
+                i.xa = i.xa * (i.x > W || i.x < 0 ? -1 : 1);
+                i.ya = i.ya * (i.y > H || i.y < 0 ? -1 : 1);
+    
+                //fillRect前两个参数为矩形左上角的x，y坐标，后两个分别为宽度和高度
+                //绘制小方块
+                context.fillRect(i.x - 0.5, i.y - 0.5, 1, 1);
+    
+                //遍历w中所有元素
+                for (let n = 0; n < w.length; n++) {
+                    x = w[n];
+                    //如果x与i不是同一个对象实例且x的xy坐标存在
+                    if (i !== x && null !== x.x && null !== x.y) {
+                        x_diff = i.x - x.x;//i和x的x坐标差
+                        y_diff = i.y - x.y;//i和x的y坐标差
+                        distance = x_diff * x_diff + y_diff * y_diff;//斜边平方
+                        if(distance < x.max){
+                            //使i小方块受鼠标小方块束缚，即如果i小方块与鼠标小方块距离过大，i小方块会被鼠标小方块束缚,
+                            //造成 多个小方块以鼠标为圆心，mouse.max/2为半径绕成一圈
+                            if(x === mouse && distance > x.max/2){
+                                i.x = i.x - 0.03 * x_diff;
+                                i.y = i.y - 0.03 * y_diff;
+                            }
+                            A = (x.max - distance) / x.max;
+                            context.beginPath();
+                            //设置画笔的画线的粗细与两个小方块的距离相关，范围0-0.5，两个小方块距离越远画线越细，达到max时画线消失
+                            context.lineWidth = A / 2; 
+                            //设置画笔的画线颜色为s.c即画布颜色，透明度为(A+0.2)即两个小方块距离越远画线越淡
+                            context.strokeStyle = "rgba(" + attr.color + "," + (A + 0.2) + ")"; 
+                            //设置画笔的笔触为i小方块
+                            context.moveTo(i.x, i.y);
+                            //使画笔的笔触移动到x小方块
+                            context.lineTo(x.x, x.y);
+                            //完成画线的绘制，即绘制连接小方块的线 
+                            context.stroke();
+                        }
+                    }
+                }
+                //把i小方块从w数组中去掉
+                //防止两个小方块重复连线
+                w.splice(w.indexOf(i), 1);
+            });
+            
+            //window.requestAnimationFrame与setTimeout相似，形成递归调用，
+            //不过window.requestAnimationFrame采用系统时间间隔，保持最佳绘制效率,提供了更好地优化，使动画更流畅
+            //经过浏览器优化，动画更流畅；
+            //窗口没激活时，动画将停止，省计算资源;
+            animation(draw);
+        }
+    
+    //此处是等待0.1秒后，执行一次draw()，真正的动画效果是用window.requestAnimationFrame实现的
+        setTimeout(function () {
+            draw();
+        }, 100)
+    
+    }();
