@@ -1,8 +1,5 @@
-!function (){
-    var text="彩蛋!"
-    console.log(text)
-}
 function copy(){
+    console.log("彩蛋!")
     const input = document.createElement('input');
     document.body.appendChild(input);
     input.setAttribute('value', "你干嘛~哎呦!");
