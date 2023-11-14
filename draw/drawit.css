@@ -265,7 +265,7 @@ a.prominent:hover {
 #setbackground, #undo, #redo, #trash,
 #play, #knob, #eraser, .eraser, #openmenu
 {
-  background: rgb(255, 255, 255) url("https://picdm.sunbangyan.cn/2023/11/13/91d694a93e9c08023207a058b5cf4509.png");
+  background: rgb(255, 255, 255) url("91d694a93e9c08023207a058b5cf4509.png");
 }
 #brush0 { background-position: -2px -8px; }
 #brush1 { background-position: -62px -8px; }
@@ -499,7 +499,7 @@ button:disabled {
   width: 600px;
   height: 500px;
   margin: auto;
-  background: #fffdc9 url('https://picdl.sunbangyan.cn/2023/11/13/8bafe49438873c73988a09da19874998.png') center no-repeat;
+  background: #fffdc9 url('8bafe49438873c73988a09da19874998.png') center no-repeat;
   cursor: crosshair;
   touch-action: pinch-zoom;
 }
