@@ -1,5 +1,6 @@
 !function (){
-    console.log("彩蛋!")
+    var text="彩蛋!"
+    console.log(text)
 }
 function copy(){
     const input = document.createElement('input');
